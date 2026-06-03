@@ -17,6 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('buyer');
+            $table->string('avatar')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('location')->nullable();
+            $table->text('bio')->nullable();
+            $table->decimal('rating_avg', 3, 2)->default(0);
+            $table->unsignedInteger('total_sold')->default(0);
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

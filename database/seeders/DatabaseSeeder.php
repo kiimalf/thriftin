@@ -15,11 +15,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Seed categories
+        $this->call(CategorySeeder::class);
 
+        // Create dummy buyer
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Rani Putri',
+            'email' => 'buyer@thriftin.com',
+            'role' => 'buyer',
+        ]);
+
+        // Create dummy seller
+        User::factory()->create([
+            'name' => 'Andi Wijaya',
+            'email' => 'seller@thriftin.com',
+            'role' => 'seller',
         ]);
     }
 }
