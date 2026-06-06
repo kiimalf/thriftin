@@ -14,7 +14,7 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link href="#" :active="false">
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
                         {{ __('Browse') }}
                     </x-nav-link>
                     @auth
@@ -36,8 +36,19 @@
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
-                    <!-- Cart Icon for Buyers -->
+                    <!-- Wishlist Icon for Buyers -->
                     @if(Auth::user()->isBuyer())
+                    <a href="{{ route('wishlist.index') }}" class="{{ request()->routeIs('wishlist.index') ? 'text-primary-600' : 'text-gray-400' }} p-2 hover:text-primary-500 relative mr-2 transition-colors">
+                        <span class="sr-only">View wishlist</span>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                        </svg>
+                        @if(Auth::user()->wishlistItems()->count() > 0)
+                        <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
+                        @endif
+                    </a>
+                    
+                    <!-- Cart Icon for Buyers -->
                     <a href="#" class="p-2 text-gray-400 hover:text-gray-500 relative mr-4">
                         <span class="sr-only">View cart</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

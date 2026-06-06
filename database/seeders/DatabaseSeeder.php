@@ -31,5 +31,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'seller@thriftin.com',
             'role' => 'seller',
         ]);
+
+        // Seed dummy products
+        $this->call(ProductSeeder::class);
     }
 }

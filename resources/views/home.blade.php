@@ -58,7 +58,7 @@
             
             <div class="mt-8 grid grid-cols-2 gap-y-6 gap-x-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:gap-x-8">
                 @foreach($categories as $category)
-                <a href="#" class="group relative flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                <a href="{{ route('products.index', ['category' => $category->slug]) }}" class="group relative flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                     <span class="text-4xl mb-3">{{ $category->icon }}</span>
                     <span class="text-sm font-medium text-gray-900">{{ $category->name }}</span>
                 </a>
@@ -67,8 +67,32 @@
         </div>
     </div>
 
-    <!-- How it works -->
+    <!-- Featured Products -->
     <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Featured Deals</h2>
+                <a href="{{ route('products.index') }}" class="hidden sm:block text-sm font-semibold text-primary-600 hover:text-primary-500">
+                    Browse all products <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                @foreach($featuredProducts as $product)
+                    <x-product-card :product="$product" />
+                @endforeach
+            </div>
+
+            <div class="mt-8 sm:hidden">
+                <a href="{{ route('products.index') }}" class="block text-sm font-semibold text-primary-600 hover:text-primary-500">
+                    Browse all products <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="bg-gray-50 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">How ThriftIn Works</h2>

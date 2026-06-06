@@ -3,9 +3,18 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Catalog\ProductFilter;
+use App\Livewire\Product\Detail;
+use App\Livewire\Wishlist\WishlistManager;
+use App\Livewire\Seller\ListingManager;
+use App\Livewire\Seller\CreateListing;
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Catalog
+Route::get('/products', ProductFilter::class)->name('products.index');
+Route::get('/products/{product}', Detail::class)->name('products.show');
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
@@ -16,14 +25,14 @@ Route::middleware('auth')->group(function () {
 
 // Seller routes
 Route::middleware(['auth', 'role:seller'])->group(function () {
-    Route::get('/sell', function () {
-        return view('seller.dashboard');
-    })->name('seller.dashboard');
+    Route::get('/sell', ListingManager::class)->name('seller.dashboard');
+    Route::get('/sell/create', CreateListing::class)->name('seller.products.create');
 });
 
-// Buyer routes (placeholder for future milestones)
+// Buyer routes
 Route::middleware(['auth', 'role:buyer'])->group(function () {
-    // Wishlist, cart, checkout, orders — to be added in Milestone 2+
+    Route::get('/wishlist', WishlistManager::class)->name('wishlist.index');
+    // Cart, checkout, orders — to be added in Milestone 3+
 });
 
 require __DIR__.'/auth.php';
