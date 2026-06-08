@@ -9,10 +9,86 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <form wire:submit="save">
+            @if($previewMode)
+                <div class="bg-white shadow sm:rounded-lg overflow-hidden mb-6">
+                    <div class="px-4 py-5 sm:px-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Preview Listing</h3>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Preview Mode
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="md:grid md:grid-cols-2 md:gap-x-8 md:items-start">
+                            <div class="flex flex-col-reverse">
+                                <div class="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden bg-gray-100">
+                                    @if($images)
+                                        <img src="{{ $images[0]->temporaryUrl() }}" alt="Preview" class="w-full h-full object-center object-cover">
+                                    @else
+                                        <div class="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="mt-10 px-4 sm:px-0 sm:mt-16 md:mt-0">
+                                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">{{ $title }}</h1>
+                                <div class="mt-3">
+                                    <p class="text-3xl text-gray-900 font-bold">Rp {{ number_format((float)($price ?: 0), 0, ',', '.') }}</p>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                            Condition: {{ ucwords(str_replace('_', ' ', $condition)) }}
+                                        </span>
+                                        @if($size)
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                            Size: {{ $size }}
+                                        </span>
+                                        @endif
+                                        @if($gender)
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                                            Gender: {{ ucfirst($gender) }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <h3 class="sr-only">Description</h3>
+                                    <div class="text-base text-gray-700 space-y-6">
+                                        {!! nl2br(e($description)) !!}
+                                    </div>
+                                    @if($brand || $weight)
+                                    <div class="mt-8 border-t border-gray-200 pt-8">
+                                        <h3 class="text-sm font-medium text-gray-900">Additional Details</h3>
+                                        <div class="mt-4 prose prose-sm text-gray-500">
+                                            <ul role="list">
+                                                @if($brand) <li><strong>Brand:</strong> {{ $brand }}</li> @endif
+                                                @if($weight) <li><strong>Weight:</strong> {{ $weight }} grams</li> @endif
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <button type="button" wire:click="backToEdit" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                        Back to Edit
+                    </button>
+                    <button type="button" wire:click="save('draft')" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="save('draft')">Save as Draft</span>
+                        <span wire:loading wire:target="save('draft')">Saving...</span>
+                    </button>
+                    <button type="button" wire:click="save('active')" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="save('active')">Publish Listing</span>
+                        <span wire:loading wire:target="save('active')">Publishing...</span>
+                    </button>
+                </div>
+            @else
+            <form wire:submit.prevent="preview">
                 <div class="shadow sm:rounded-md sm:overflow-hidden border border-gray-200">
                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                        
                         <!-- Photos -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Photos</label>
@@ -142,14 +218,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <div class="px-4 py-3 bg-gray-50 flex justify-end space-x-3 sm:px-6">
+                        <button type="button" wire:click="save('draft')" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" wire:loading.attr="disabled">
+                            <span wire:loading.remove wire:target="save('draft')">Save Draft</span>
+                            <span wire:loading wire:target="save('draft')">Saving...</span>
+                        </button>
                         <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" wire:loading.attr="disabled">
-                            <span wire:loading.remove>List Product</span>
-                            <span wire:loading>Saving...</span>
+                            <span wire:loading.remove wire:target="preview">Preview & Publish</span>
+                            <span wire:loading wire:target="preview">Loading...</span>
                         </button>
                     </div>
                 </div>
             </form>
+            @endif
         </div>
     </div>
 </div>

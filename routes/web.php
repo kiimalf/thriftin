@@ -23,14 +23,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Seller routes
-Route::middleware(['auth', 'role:seller'])->group(function () {
+// Unified authenticated routes (formerly split by seller/buyer)
+Route::middleware('auth')->group(function () {
     Route::get('/sell', ListingManager::class)->name('seller.dashboard');
     Route::get('/sell/create', CreateListing::class)->name('seller.products.create');
-});
-
-// Buyer routes
-Route::middleware(['auth', 'role:buyer'])->group(function () {
     Route::get('/wishlist', WishlistManager::class)->name('wishlist.index');
     // Cart, checkout, orders — to be added in Milestone 3+
 });

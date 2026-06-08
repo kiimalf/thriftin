@@ -15,7 +15,6 @@ use Illuminate\Notifications\Notifiable;
     'name',
     'email',
     'password',
-    'role',
     'avatar',
     'phone',
     'location',
@@ -109,17 +108,4 @@ class User extends Authenticatable
         return $this->hasMany(Conversation::class, 'seller_id');
     }
 
-    // ──────────────────────────────────────────────
-    // Helpers
-    // ──────────────────────────────────────────────
-
-    public function isBuyer(): bool
-    {
-        return $this->role === 'buyer';
-    }
-
-    public function isSeller(): bool
-    {
-        return $this->role === 'seller';
-    }
 }

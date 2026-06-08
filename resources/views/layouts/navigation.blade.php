@@ -18,11 +18,9 @@
                         {{ __('Browse') }}
                     </x-nav-link>
                     @auth
-                        @if(Auth::user()->isSeller())
                         <x-nav-link :href="route('seller.dashboard')" :active="request()->routeIs('seller.dashboard')">
                             {{ __('My Listings') }}
                         </x-nav-link>
-                        @endif
                     @endauth
                 </div>
             </div>
@@ -36,8 +34,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
-                    <!-- Wishlist Icon for Buyers -->
-                    @if(Auth::user()->isBuyer())
+                    <!-- Wishlist Icon -->
                     <a href="{{ route('wishlist.index') }}" class="{{ request()->routeIs('wishlist.index') ? 'text-primary-600' : 'text-gray-400' }} p-2 hover:text-primary-500 relative mr-2 transition-colors">
                         <span class="sr-only">View wishlist</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -48,14 +45,13 @@
                         @endif
                     </a>
                     
-                    <!-- Cart Icon for Buyers -->
+                    <!-- Cart Icon -->
                     <a href="#" class="p-2 text-gray-400 hover:text-gray-500 relative mr-4">
                         <span class="sr-only">View cart</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                         </svg>
                     </a>
-                    @endif
 
                     <!-- Settings Dropdown -->
                     <x-dropdown align="right" width="48">
@@ -125,11 +121,9 @@
                 {{ __('Browse') }}
             </x-responsive-nav-link>
             @auth
-                @if(Auth::user()->isSeller())
                 <x-responsive-nav-link :href="route('seller.dashboard')" :active="request()->routeIs('seller.dashboard')">
                     {{ __('My Listings') }}
                 </x-responsive-nav-link>
-                @endif
             @endauth
         </div>
 

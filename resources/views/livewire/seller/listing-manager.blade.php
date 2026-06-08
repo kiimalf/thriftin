@@ -110,7 +110,11 @@
                                                     </span>
                                                 </td>
                                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                    <a href="#" class="text-primary-600 hover:text-primary-900">Edit</a>
+                                                    @if($product->status === 'draft')
+                                                        <button wire:click="publishListing({{ $product->id }})" class="text-green-600 hover:text-green-900 mr-4">Publish</button>
+                                                    @endif
+                                                    <a href="#" class="text-primary-600 hover:text-primary-900 mr-4">Edit</a>
+                                                    <button wire:click="deleteListing({{ $product->id }})" wire:confirm="Are you sure you want to delete this listing?" class="text-red-600 hover:text-red-900">Delete</button>
                                                 </td>
                                             </tr>
                                             @endforeach

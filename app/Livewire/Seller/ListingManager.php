@@ -19,6 +19,22 @@ class ListingManager extends Component
         $this->resetPage();
     }
 
+    public function publishListing($id)
+    {
+        $product = Product::where('user_id', Auth::id())->findOrFail($id);
+        if ($product->status === 'draft') {
+            $product->update(['status' => 'active']);
+            session()->flash('message', 'Listing published successfully!');
+        }
+    }
+
+    public function deleteListing($id)
+    {
+        $product = Product::where('user_id', Auth::id())->findOrFail($id);
+        $product->delete();
+        session()->flash('message', 'Listing deleted successfully!');
+    }
+
     public function render()
     {
         $query = Product::where('user_id', Auth::id())

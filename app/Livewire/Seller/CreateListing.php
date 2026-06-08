@@ -25,6 +25,8 @@ class CreateListing extends Component
     public $weight = '';
     public $images = [];
 
+    public $previewMode = false;
+
     protected $rules = [
         'title' => 'required|string|max:255',
         'description' => 'required|string',
@@ -39,7 +41,18 @@ class CreateListing extends Component
         'images' => 'required|array|min:1|max:8',
     ];
 
-    public function save()
+    public function preview()
+    {
+        $this->validate();
+        $this->previewMode = true;
+    }
+
+    public function backToEdit()
+    {
+        $this->previewMode = false;
+    }
+
+    public function save($status = 'active')
     {
         $this->validate();
 
@@ -57,7 +70,7 @@ class CreateListing extends Component
             'size' => $this->size,
             'brand' => $this->brand,
             'weight' => $this->weight,
-            'status' => 'active',
+            'status' => $status,
         ]);
 
         foreach ($this->images as $index => $image) {
@@ -71,7 +84,7 @@ class CreateListing extends Component
             ]);
         }
 
-        session()->flash('message', 'Product listed successfully!');
+        session()->flash('message', $status === 'draft' ? 'Product saved as draft!' : 'Product listed successfully!');
         return redirect()->route('seller.dashboard');
     }
 
