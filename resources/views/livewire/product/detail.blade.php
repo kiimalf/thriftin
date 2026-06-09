@@ -105,9 +105,7 @@
                                 </p>
                             </div>
                         </div>
-                        <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                            Message Seller
-                        </button>
+
                     </div>
                 </div>
 
@@ -131,8 +129,9 @@
                 </div>
 
                 <div class="mt-10 flex sm:flex-col1">
-                    <button type="button" class="max-w-xs flex-1 bg-primary-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-offset-gray-50 sm:w-full">
-                        Add to Cart
+                    <button type="button" wire:click="addToCart" class="max-w-xs flex-1 bg-primary-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-offset-gray-50 sm:w-full" wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="addToCart">Add to Cart</span>
+                        <span wire:loading wire:target="addToCart">Adding...</span>
                     </button>
                     <button type="button" class="ml-4 max-w-xs flex-1 bg-gray-900 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 focus:ring-offset-gray-50 sm:w-full">
                         Buy Now

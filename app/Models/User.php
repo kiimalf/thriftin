@@ -96,16 +96,4 @@ class User extends Authenticatable
         return $this->hasMany(WishlistItem::class);
     }
 
-    /** @return HasMany<Conversation, $this> */
-    public function buyerConversations(): HasMany
-    {
-        return $this->hasMany(Conversation::class, 'buyer_id');
-    }
-
-    /** @return HasMany<Conversation, $this> */
-    public function sellerConversations(): HasMany
-    {
-        return $this->hasMany(Conversation::class, 'seller_id');
-    }
-
 }

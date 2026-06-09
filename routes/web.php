@@ -28,7 +28,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', ListingManager::class)->name('seller.dashboard');
     Route::get('/sell/create', CreateListing::class)->name('seller.products.create');
     Route::get('/wishlist', WishlistManager::class)->name('wishlist.index');
-    // Cart, checkout, orders — to be added in Milestone 3+
+    Route::get('/cart', \App\Livewire\Cart\CartComponent::class)->name('cart.index');
+    Route::get('/checkout', \App\Livewire\Checkout\CheckoutComponent::class)->name('checkout.index');
+    
+    // Payment
+    Route::get('/payment/checkout', [\App\Http\Controllers\PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::get('/payment/success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
+
+    // Orders
+    Route::get('/orders', \App\Livewire\Order\BuyerOrderList::class)->name('orders.index');
+    Route::get('/sell/orders', \App\Livewire\Order\SellerOrderManager::class)->name('seller.orders.index');
 });
 
 require __DIR__.'/auth.php';

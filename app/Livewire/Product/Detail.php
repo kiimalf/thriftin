@@ -25,6 +25,25 @@ class Detail extends Component
         $this->activeImage = $url;
     }
 
+    public function addToCart()
+    {
+        if (!\Illuminate\Support\Facades\Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $cartItem = \App\Models\CartItem::firstOrCreate([
+            'user_id' => \Illuminate\Support\Facades\Auth::id(),
+            'product_id' => $this->product->id,
+        ]);
+
+        if (!$cartItem->wasRecentlyCreated) {
+            $cartItem->increment('quantity');
+        }
+
+        $this->dispatch('cart-updated');
+        session()->flash('message', 'Product added to cart!');
+    }
+
     public function render()
     {
         return view('livewire.product.detail', [
