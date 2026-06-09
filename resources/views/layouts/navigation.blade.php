@@ -5,23 +5,15 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <span class="text-2xl font-bold text-primary-600 tracking-tight">Thrift<span class="text-gray-900">In</span></span>
+                        <span class="text-2xl font-black text-black tracking-tighter uppercase">THRIFTIN</span>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')" class="text-gray-900 font-medium">
+                        {{ __('Shop') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                        {{ __('Browse') }}
-                    </x-nav-link>
-                    @auth
-                        <x-nav-link :href="route('seller.dashboard')" :active="request()->routeIs('seller.dashboard')">
-                            {{ __('My Listings') }}
-                        </x-nav-link>
-                    @endauth
                 </div>
             </div>
 
@@ -32,49 +24,50 @@
                 </div>
             </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 space-x-7">
                 @auth
+                    <!-- Sell Link -->
+                    <a href="{{ route('seller.dashboard') }}" class="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors mr-4">
+                        Sell
+                    </a>
+                    
+                    <!-- Notification Bell -->
+                    <a href="#" class="text-black hover:text-gray-600 relative transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                        </svg>
+                        <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-black ring-2 ring-white"></span>
+                    </a>
+
+
                     <!-- Wishlist Icon -->
-                    <a href="{{ route('wishlist.index') }}" class="{{ request()->routeIs('wishlist.index') ? 'text-primary-600' : 'text-gray-400' }} p-2 hover:text-primary-500 relative mr-2 transition-colors">
+                    <a href="{{ route('wishlist.index') }}" class="text-black hover:text-gray-600 relative transition-colors">
                         <span class="sr-only">View wishlist</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                         </svg>
-                        @if(Auth::user()->wishlistItems()->count() > 0)
-                        <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
-                        @endif
                     </a>
                     
                     <!-- Cart Icon -->
-                    <a href="#" class="p-2 text-gray-400 hover:text-gray-500 relative mr-4">
-                        <span class="sr-only">View cart</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                        </svg>
-                    </a>
+                    <div class="text-black hover:text-gray-600 transition-colors">
+                        @livewire('cart.cart-button')
+                    </div>
 
                     <!-- Settings Dropdown -->
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-full text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none transition ease-in-out duration-150">
-                                @if(Auth::user()->avatar)
-                                    <img class="h-8 w-8 rounded-full object-cover mr-2" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" />
-                                @else
-                                    <div class="h-8 w-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold mr-2">
-                                        {{ substr(Auth::user()->name, 0, 1) }}
-                                    </div>
-                                @endif
-                                <div>{{ Auth::user()->name }}</div>
-
-                                <div class="ms-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
+                            <button class="inline-flex items-center text-black hover:text-gray-600 focus:outline-none transition ease-in-out duration-150">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                </svg>
                             </button>
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-dropdown-link :href="route('orders.index')">
+                                {{ __('My Orders') }}
+                            </x-dropdown-link>
+
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -82,7 +75,6 @@
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-
                                 <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
@@ -94,7 +86,7 @@
                 @else
                     <div class="flex items-center space-x-4">
                         <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-gray-900">Log in</a>
-                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Register</a>
+                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">Register</a>
                     </div>
                 @endauth
             </div>
@@ -124,6 +116,9 @@
                 <x-responsive-nav-link :href="route('seller.dashboard')" :active="request()->routeIs('seller.dashboard')">
                     {{ __('My Listings') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('seller.orders.index')" :active="request()->routeIs('seller.orders.index')">
+                    {{ __('Incoming Orders') }}
+                </x-responsive-nav-link>
             @endauth
         </div>
 
@@ -145,6 +140,10 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('orders.index')">
+                    {{ __('My Orders') }}
+                </x-responsive-nav-link>
+
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
