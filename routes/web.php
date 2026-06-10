@@ -38,6 +38,11 @@ Route::middleware('auth')->group(function () {
     // Orders
     Route::get('/orders', \App\Livewire\Order\BuyerOrderList::class)->name('orders.index');
     Route::get('/sell/orders', \App\Livewire\Order\SellerOrderManager::class)->name('seller.orders.index');
+
+    // Notifications
+    Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/{id}/read', [\App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
 });
 
 require __DIR__.'/auth.php';
