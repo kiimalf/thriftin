@@ -15,6 +15,15 @@ class BuyerOrderList extends Component
         // Buyer can only update to 'completed' or 'cancelled' (before payment)
         if ($status === 'completed' && $order->status === 'shipped') {
             $order->update(['status' => 'completed']);
+            
+            \App\Services\NotificationService::send(
+                $order->seller_id,
+                'order_update',
+                'Order Completed!',
+                "Buyer has received '{$order->product->title}'. The transaction is complete.",
+                ['order_id' => $order->id, 'url' => '/sell/orders']
+            );
+            
             session()->flash('message', 'Order marked as completed. Thank you!');
         }
     }

@@ -37,6 +37,15 @@ class SellerOrderManager extends Component
                 'status' => 'shipped',
                 'tracking_number' => $trackingNumber
             ]);
+            
+            \App\Services\NotificationService::send(
+                $order->buyer_id,
+                'order_update',
+                'Order Shipped!',
+                "Your order '{$order->product->title}' has been shipped. Resi: {$trackingNumber}",
+                ['order_id' => $order->id, 'url' => '/orders']
+            );
+            
             session()->flash('message', 'Order marked as shipped!');
         } else {
             session()->flash('error', 'Please input a tracking number first.');

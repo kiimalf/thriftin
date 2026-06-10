@@ -119,8 +119,15 @@ class PaymentController extends Controller
                         'paid_at' => in_array($transactionStatus, ['capture', 'settlement']) ? now() : null,
                     ]);
                     
-                    // Note: In MVP, we skip email queues per user instruction. 
-                    // Notifications could be saved to DB here if Notification table exists.
+                    if (in_array($transactionStatus, ['capture', 'settlement'])) {
+                        \App\Services\NotificationService::send(
+                            $order->seller_id,
+                            'order_update',
+                            'New Order Received!',
+                            "Your item '{$order->product->title}' has been paid. Please prepare for shipping.",
+                            ['order_id' => $order->id, 'url' => '/sell/orders']
+                        );
+                    }
                 }
             }
             
