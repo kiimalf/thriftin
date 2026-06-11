@@ -21,6 +21,7 @@ use Illuminate\Notifications\Notifiable;
     'bio',
     'rating_avg',
     'total_sold',
+    'is_admin',
     'google_id',
 ])]
 #[Hidden(['password', 'remember_token'])]
@@ -41,6 +42,7 @@ class User extends Authenticatable
             'password' => 'hashed',
             'rating_avg' => 'decimal:2',
             'total_sold' => 'integer',
+            'is_admin' => 'boolean',
         ];
     }
 

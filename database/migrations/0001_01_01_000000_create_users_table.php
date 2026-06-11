@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->decimal('rating_avg', 3, 2)->default(0);
             $table->unsignedInteger('total_sold')->default(0);
+            $table->boolean('is_admin')->default(false);
             $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

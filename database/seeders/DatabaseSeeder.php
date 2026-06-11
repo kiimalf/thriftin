@@ -18,6 +18,13 @@ class DatabaseSeeder extends Seeder
         // Seed categories
         $this->call(CategorySeeder::class);
 
+        // Create dummy admin
+        User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => 'admin@thriftin.com',
+            'is_admin' => true,
+        ]);
+
         // Create dummy buyer
         User::factory()->create([
             'name' => 'Rani Putri',
