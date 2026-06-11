@@ -11,7 +11,17 @@ class ListingManager extends Component
 {
     use WithPagination;
 
-    public $statusFilter = 'active'; // active, sold, draft
+    #[\Livewire\Attributes\Url(as: 'status')]
+    public $statusFilter = 'active'; // processing, shipped, active, sold, draft
+    
+    public $trackingNumbers = [];
+
+    public function mount()
+    {
+        if (request()->routeIs('seller.orders.index') && !request()->has('status')) {
+            $this->statusFilter = 'processing';
+        }
+    }
 
     public function setStatusFilter($status)
     {
@@ -35,20 +45,80 @@ class ListingManager extends Component
         session()->flash('message', 'Listing deleted successfully!');
     }
 
+    public function shipOrder($orderId)
+    {
+        $order = \App\Models\Order::where('seller_id', Auth::id())->findOrFail($orderId);
+        
+        $trackingNumber = $this->trackingNumbers[$orderId] ?? null;
+        
+        $this->validate([
+            'trackingNumbers.'.$orderId => 'required|string|min:5'
+        ]);
+        
+        if ($trackingNumber) {
+            $order->update([
+                'status' => 'shipped',
+                'tracking_number' => $trackingNumber
+            ]);
+            
+            \App\Services\NotificationService::send(
+                $order->buyer_id,
+                'order_update',
+                'Order Shipped!',
+                "Your order '{$order->product->title}' has been shipped. Resi: {$trackingNumber}",
+                ['order_id' => $order->id, 'url' => '/orders']
+            );
+            
+            session()->flash('message', 'Order marked as shipped!');
+        } else {
+            session()->flash('error', 'Please input a tracking number first.');
+        }
+    }
+
+    public function cancelOrder($orderId)
+    {
+        $order = \App\Models\Order::where('seller_id', Auth::id())->findOrFail($orderId);
+        
+        if ($order->status === 'processing') {
+            $order->update(['status' => 'cancelled']);
+            session()->flash('message', 'Order cancelled. Refund will be processed manually.');
+        }
+    }
+
     public function render()
     {
-        $query = Product::where('user_id', Auth::id())
-                        ->with('primaryImage', 'category')
-                        ->orderBy('created_at', 'desc');
+        $products = collect();
+        $orders = collect();
+        $isOrderTab = in_array($this->statusFilter, ['processing', 'shipped']);
 
-        if ($this->statusFilter !== 'all') {
+        if ($isOrderTab) {
+            $query = \App\Models\Order::where('seller_id', Auth::id())
+                ->with(['product', 'buyer', 'shippingAddress'])
+                ->orderBy('created_at', 'desc');
+                
             $query->where('status', $this->statusFilter);
+            
+            $orders = $query->paginate(10);
+        } else {
+            $query = Product::where('user_id', Auth::id())
+                ->with(['primaryImage', 'category', 'orders' => function($q) {
+                    $q->latest();
+                }])
+                ->orderBy('created_at', 'desc');
+
+            if ($this->statusFilter !== 'all') {
+                $query->where('status', $this->statusFilter);
+            }
+            
+            $products = $query->paginate(10);
         }
 
         return view('livewire.seller.listing-manager', [
-            'products' => $query->paginate(10),
+            'products' => $products,
+            'orders' => $orders,
+            'isOrderTab' => $isOrderTab,
             'activeCount' => Product::where('user_id', Auth::id())->where('status', 'active')->count(),
             'soldCount' => Product::where('user_id', Auth::id())->where('status', 'sold')->count(),
-        ])->layout('layouts.app', ['header' => view('components.seller-header')]);
+        ])->layout('layouts.app');
     }
 }

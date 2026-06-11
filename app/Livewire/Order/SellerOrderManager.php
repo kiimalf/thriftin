@@ -10,6 +10,9 @@ class SellerOrderManager extends Component
 {
     public $trackingNumbers = [];
 
+    #[\Livewire\Attributes\Url(as: 'status')]
+    public $statusFilter = 'processing'; // processing, shipped
+
     public function updateStatus($orderId, $status)
     {
         $order = Order::where('seller_id', Auth::id())->findOrFail($orderId);
@@ -28,9 +31,9 @@ class SellerOrderManager extends Component
         
         $trackingNumber = $this->trackingNumbers[$orderId] ?? null;
         
-        $order->validate = [
+        $this->validate([
             'trackingNumbers.'.$orderId => 'required|string|min:5'
-        ];
+        ]);
         
         if ($trackingNumber) {
             $order->update([
@@ -64,14 +67,20 @@ class SellerOrderManager extends Component
 
     public function render()
     {
-        $orders = Order::where('seller_id', Auth::id())
-            ->where('status', '!=', 'pending_payment') // Sellers usually don't need to see unpaid unless they want to
+        $query = Order::where('seller_id', Auth::id())
             ->with(['product', 'buyer', 'shippingAddress'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('created_at', 'desc');
+
+        if ($this->statusFilter === 'processing') {
+            $query->where('status', 'processing');
+        } elseif ($this->statusFilter === 'shipped') {
+            $query->where('status', 'shipped');
+        } else {
+            $query->whereNotIn('status', ['pending_payment']);
+        }
 
         return view('livewire.order.seller-order-manager', [
-            'orders' => $orders
+            'orders' => $query->get()
         ])->layout('layouts.app');
     }
 }

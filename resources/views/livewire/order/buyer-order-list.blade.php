@@ -47,6 +47,9 @@
                                 </div>
                                 
                                 <div class="ml-4 flex flex-col space-y-2">
+                                    <a href="{{ route('orders.show', $order->id) }}" class="inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                        View Details
+                                    </a>
                                     @if($order->status === 'pending_payment')
                                         <a href="{{ route('payment.checkout', ['order_id' => $order->midtrans_order_id]) }}" class="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700">
                                             Pay Now
@@ -58,9 +61,9 @@
                                         </button>
                                     @endif
                                     @if($order->status === 'completed' && !$order->review)
-                                        <button class="inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                        <a href="{{ route('orders.show', $order->id) }}" class="inline-flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                                             Write a Review
-                                        </button>
+                                        </a>
                                     @endif
                                 </div>
                             </div>
