@@ -87,54 +87,53 @@ class PaymentController extends Controller
 
     public function callback(Request $request)
     {
-        $serverKey = config('services.midtrans.server_key');
+        \Illuminate\Support\Facades\Log::info('Midtrans Callback Received', $request->all());
+
+        try {
+            $notif = new \Midtrans\Notification();
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Midtrans Notification Error: ' . $e->getMessage());
+            return response()->json(['message' => 'Invalid signature or payload'], 403);
+        }
+
+        $transactionStatus = $notif->transaction_status;
+        $orderId = $notif->order_id;
         
-        // Very basic signature validation for MVP
-        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        $orders = Order::where('midtrans_order_id', $orderId)->get();
         
-        if ($hashed == $request->signature_key) {
-            // Valid notification
-            $transactionStatus = $request->transaction_status;
-            $orderId = $request->order_id;
-            
-            $orders = Order::where('midtrans_order_id', $orderId)->get();
-            
-            if ($orders->isEmpty()) return response()->json(['message' => 'Order not found'], 404);
+        if ($orders->isEmpty()) return response()->json(['message' => 'Order not found'], 404);
 
-            $statusMap = [
-                'capture' => 'processing',
-                'settlement' => 'processing',
-                'pending' => 'pending_payment',
-                'deny' => 'cancelled',
-                'expire' => 'cancelled',
-                'cancel' => 'cancelled',
-            ];
+        $statusMap = [
+            'capture' => 'processing',
+            'settlement' => 'processing',
+            'pending' => 'pending_payment',
+            'deny' => 'cancelled',
+            'expire' => 'cancelled',
+            'cancel' => 'cancelled',
+        ];
 
-            $newStatus = $statusMap[$transactionStatus] ?? null;
+        $newStatus = $statusMap[$transactionStatus] ?? null;
 
-            if ($newStatus) {
-                foreach ($orders as $order) {
-                    $order->update([
-                        'status' => $newStatus,
-                        'paid_at' => in_array($transactionStatus, ['capture', 'settlement']) ? now() : null,
-                    ]);
-                    
-                    if (in_array($transactionStatus, ['capture', 'settlement'])) {
-                        \App\Services\NotificationService::send(
-                            $order->seller_id,
-                            'order_update',
-                            'New Order Received!',
-                            "Your item '{$order->product->title}' has been paid. Please prepare for shipping.",
-                            ['order_id' => $order->id, 'url' => '/sell/orders']
-                        );
-                    }
+        if ($newStatus) {
+            foreach ($orders as $order) {
+                $order->update([
+                    'status' => $newStatus,
+                    'paid_at' => in_array($transactionStatus, ['capture', 'settlement']) ? now() : null,
+                ]);
+                
+                if (in_array($transactionStatus, ['capture', 'settlement'])) {
+                    \App\Services\NotificationService::send(
+                        $order->seller_id,
+                        'order_update',
+                        'New Order Received!',
+                        "Your item '{$order->product->title}' has been paid. Please prepare for shipping.",
+                        ['order_id' => $order->id, 'url' => '/sell/orders']
+                    );
                 }
             }
-            
-            return response()->json(['message' => 'Callback processed']);
         }
         
-        return response()->json(['message' => 'Invalid signature'], 403);
+        return response()->json(['message' => 'Callback processed']);
     }
     
     public function success(Request $request)
