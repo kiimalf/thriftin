@@ -11,6 +11,7 @@ use App\Livewire\Seller\CreateListing;
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/profile/{user}', \App\Livewire\Profile\Show::class)->name('profile.show');
 
 // Catalog
 Route::get('/products', ProductFilter::class)->name('products.index');
@@ -25,8 +26,10 @@ Route::middleware('auth')->group(function () {
 
 // Unified authenticated routes (formerly split by seller/buyer)
 Route::middleware('auth')->group(function () {
-    Route::get('/sell', ListingManager::class)->name('seller.dashboard');
+    Route::get('/sell', \App\Livewire\Seller\ListingManager::class)->name('seller.dashboard');
     Route::get('/sell/create', CreateListing::class)->name('seller.products.create');
+    Route::get('/sell/orders', \App\Livewire\Seller\ListingManager::class)->name('seller.orders.index');
+    Route::get('/sell/{product}', \App\Livewire\Seller\ListingDetail::class)->name('seller.products.show');
     Route::get('/wishlist', WishlistManager::class)->name('wishlist.index');
     Route::get('/cart', \App\Livewire\Cart\CartComponent::class)->name('cart.index');
     Route::get('/checkout', \App\Livewire\Checkout\CheckoutComponent::class)->name('checkout.index');
@@ -37,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // Orders
     Route::get('/orders', \App\Livewire\Order\BuyerOrderList::class)->name('orders.index');
-    Route::get('/sell/orders', \App\Livewire\Order\SellerOrderManager::class)->name('seller.orders.index');
+    Route::get('/orders/{order}', \App\Livewire\Order\OrderDetail::class)->name('orders.show');
 
     // Notifications
     Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
