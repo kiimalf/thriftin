@@ -15,7 +15,11 @@ class Detail extends Component
         $this->product = $product->load('images', 'seller', 'category', 'reviews.reviewer');
         
         // Increase view count
-        $this->product->increment('views_count');
+        $sessionKey = 'viewed_product_' . $this->product->id;
+        if (!session()->has($sessionKey)) {
+            $this->product->increment('views_count');
+            session()->put($sessionKey, true);
+        }
         
         $this->activeImage = $this->product->primaryImage ? $this->product->primaryImage->url : null;
     }
