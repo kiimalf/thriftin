@@ -20,9 +20,16 @@ class HomeController extends Controller
                             ->take(8)
                             ->get();
 
+        $recentArticles = \App\Models\Article::with('author')
+                            ->where('status', 'published')
+                            ->orderBy('published_at', 'desc')
+                            ->take(3)
+                            ->get();
+
         return view('home', [
             'categories' => $categories,
             'featuredProducts' => $featuredProducts,
+            'recentArticles' => $recentArticles,
         ]);
     }
 }
