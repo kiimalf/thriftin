@@ -13,7 +13,11 @@ use App\Livewire\Seller\CreateListing;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{user}', \App\Livewire\Profile\Show::class)->name('profile.show');
 
-// Catalog
+// Blog Routes
+Route::get('/blog', \App\Livewire\Blog\ArticleIndex::class)->name('blog.index');
+Route::get('/blog/{article:slug}', \App\Livewire\Blog\ArticleShow::class)->name('blog.show');
+
+// Public Product Routes
 Route::get('/products', ProductFilter::class)->name('products.index');
 Route::get('/products/{product}', Detail::class)->name('products.show');
 
@@ -49,3 +53,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Admin Routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', \App\Livewire\Admin\AdminDashboard::class)->name('dashboard');
+    Route::get('/users', \App\Livewire\Admin\AdminUserManagement::class)->name('users.index');
+    Route::get('/products', \App\Livewire\Admin\AdminProductModeration::class)->name('products.index');
+    Route::get('/articles', \App\Livewire\Admin\AdminArticleManager::class)->name('articles.index');
+    Route::get('/articles/create', \App\Livewire\Admin\AdminArticleEditor::class)->name('articles.create');
+    Route::get('/articles/{article}/edit', \App\Livewire\Admin\AdminArticleEditor::class)->name('articles.edit');
+});
