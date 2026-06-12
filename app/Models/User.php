@@ -23,6 +23,8 @@ use Illuminate\Notifications\Notifiable;
     'total_sold',
     'is_admin',
     'google_id',
+    'is_suspended',
+    'suspended_at',
 ])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -43,6 +45,8 @@ class User extends Authenticatable
             'rating_avg' => 'decimal:2',
             'total_sold' => 'integer',
             'is_admin' => 'boolean',
+            'is_suspended' => 'boolean',
+            'suspended_at' => 'datetime',
         ];
     }
 
@@ -96,6 +100,12 @@ class User extends Authenticatable
     public function wishlistItems(): HasMany
     {
         return $this->hasMany(WishlistItem::class);
+    }
+
+    /** @return HasMany<Article, $this> */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'author_id');
     }
 
 }
