@@ -9,10 +9,12 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')" class="text-gray-900 font-medium">
                         {{ __('Shop') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.*')" class="text-gray-900 font-medium">
+                        {{ __('Blog') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -60,6 +62,13 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            @if(Auth::user()->is_admin)
+                                <x-dropdown-link :href="route('admin.dashboard')">
+                                    {{ __('Admin Panel') }}
+                                </x-dropdown-link>
+                                <div class="border-t border-gray-100"></div>
+                            @endif
+
                             <x-dropdown-link :href="route('orders.index')">
                                 {{ __('My Orders') }}
                             </x-dropdown-link>
@@ -102,11 +111,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Home') }}
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                {{ __('Shop') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="#" :active="false">
-                {{ __('Browse') }}
+            <x-responsive-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.*')">
+                {{ __('Blog') }}
             </x-responsive-nav-link>
             @auth
                 <x-responsive-nav-link :href="route('seller.dashboard')" :active="request()->routeIs('seller.dashboard')">
@@ -136,6 +145,12 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                @if(Auth::user()->is_admin)
+                    <x-responsive-nav-link :href="route('admin.dashboard')">
+                        {{ __('Admin Panel') }}
+                    </x-responsive-nav-link>
+                @endif
+
                 <x-responsive-nav-link :href="route('orders.index')">
                     {{ __('My Orders') }}
                 </x-responsive-nav-link>
