@@ -62,4 +62,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/articles', \App\Livewire\Admin\AdminArticleManager::class)->name('articles.index');
     Route::get('/articles/create', \App\Livewire\Admin\AdminArticleEditor::class)->name('articles.create');
     Route::get('/articles/{article}/edit', \App\Livewire\Admin\AdminArticleEditor::class)->name('articles.edit');
+    Route::post('/upload-image', [\App\Http\Controllers\Admin\ImageUploadController::class, 'upload'])->name('upload-image');
 });
