@@ -1,14 +1,11 @@
-<div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-    <div class="md:grid md:grid-cols-3 md:gap-6">
-        <div class="md:col-span-1">
-            <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Create New Listing</h3>
-                <p class="mt-1 text-sm text-gray-600">
-                    Add photos and details about your item to help buyers find it.
-                </p>
-            </div>
-        </div>
-        <div class="mt-5 md:mt-0 md:col-span-2">
+<div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
+    <div class="mb-8 px-4 sm:px-0">
+        <h3 class="text-2xl font-bold leading-6 text-gray-900">Create New Listing</h3>
+        <p class="mt-2 text-sm text-gray-600">
+            Add photos and details about your item to help buyers find it.
+        </p>
+    </div>
+    <div>
             @if($previewMode)
                 <div class="bg-white shadow sm:rounded-lg overflow-hidden mb-6">
                     <div class="px-4 py-5 sm:px-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
@@ -128,7 +125,7 @@
                         <!-- Title -->
                         <div>
                             <label for="title" class="block text-sm font-medium text-gray-700">Listing Title</label>
-                            <input type="text" wire:model="title" id="title" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="e.g. Vintage Levi's 501 Jeans">
+                            <input type="text" wire:model="title" id="title" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-3 py-2" placeholder="e.g. Vintage Levi's 501 Jeans">
                             @error('title') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
 
@@ -136,7 +133,7 @@
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                             <div class="mt-1">
-                                <textarea id="description" wire:model="description" rows="5" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Describe the item, condition, and any flaws..."></textarea>
+                                <textarea id="description" wire:model="description" rows="5" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md px-3 py-2" placeholder="Describe the item, condition, and any flaws..."></textarea>
                             </div>
                             @error('description') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
@@ -149,7 +146,7 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm">Rp</span>
                                     </div>
-                                    <input type="number" wire:model="price" id="price" class="focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="0">
+                                    <input type="number" wire:model="price" id="price" class="focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 pr-3 py-2 sm:text-sm border-gray-300 rounded-md" placeholder="0">
                                 </div>
                                 @error('price') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
@@ -158,7 +155,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="weight" class="block text-sm font-medium text-gray-700">Weight (grams)</label>
                                 <div class="mt-1 relative rounded-md shadow-sm">
-                                    <input type="number" wire:model="weight" id="weight" class="focus:ring-primary-500 focus:border-primary-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0">
+                                    <input type="number" wire:model="weight" id="weight" class="focus:ring-primary-500 focus:border-primary-500 block w-full pl-3 pr-12 py-2 sm:text-sm border-gray-300 rounded-md" placeholder="0">
                                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm">g</span>
                                     </div>
@@ -193,14 +190,14 @@
                             <!-- Brand -->
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="brand" class="block text-sm font-medium text-gray-700">Brand (Optional)</label>
-                                <input type="text" wire:model="brand" id="brand" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input type="text" wire:model="brand" id="brand" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-3 py-2">
                                 @error('brand') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
 
                             <!-- Size -->
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="size" class="block text-sm font-medium text-gray-700">Size</label>
-                                <input type="text" wire:model="size" id="size" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="e.g. M, L, 32">
+                                <input type="text" wire:model="size" id="size" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-3 py-2" placeholder="e.g. M, L, 32">
                                 @error('size') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
 

@@ -151,7 +151,7 @@
                 <article class="flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
                     @if($article->image)
                         <div class="flex-shrink-0">
-                            <img class="h-48 w-full object-cover" src="{{ $article->image }}" alt="{{ $article->title }}">
+                            <img class="h-48 w-full object-cover" src="{{ $article->image_url }}" alt="{{ $article->title }}">
                         </div>
                     @else
                         <div class="flex-shrink-0 h-48 w-full bg-slate-100 flex items-center justify-center">

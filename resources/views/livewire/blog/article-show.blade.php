@@ -35,9 +35,9 @@
 
     <!-- Featured Image -->
     @if($article->image)
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden shadow-lg bg-gray-100">
-            <img src="{{ $article->image }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="rounded-2xl overflow-hidden shadow-lg bg-gray-100" style="aspect-ratio: 16/9; max-height: 480px;">
+            <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
         </div>
     </div>
     @endif
@@ -45,7 +45,7 @@
     <!-- Article Content -->
     <div class="bg-white pb-16 sm:pb-24">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="prose prose-lg prose-primary mx-auto text-gray-800">
+            <div class="prose prose-lg prose-primary mx-auto text-gray-800 [&_img]:max-h-[500px] [&_img]:w-auto [&_img]:mx-auto [&_img]:rounded-xl [&_img]:object-contain">
                 {!! $article->content !!}
             </div>
             
@@ -68,7 +68,7 @@
                 <article class="flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
                     @if($related->image)
                         <div class="flex-shrink-0">
-                            <img class="h-48 w-full object-cover" src="{{ $related->image }}" alt="{{ $related->title }}">
+                            <img class="h-48 w-full object-cover" src="{{ $related->image_url }}" alt="{{ $related->title }}">
                         </div>
                     @else
                         <div class="flex-shrink-0 h-48 w-full bg-slate-100 flex items-center justify-center">

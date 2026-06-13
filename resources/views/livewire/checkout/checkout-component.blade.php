@@ -60,43 +60,43 @@
                             <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                                 <div class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Address Label (e.g., Home, Office)</label>
-                                    <input type="text" wire:model="label" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    <input type="text" wire:model="label" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2">
                                     @error('label') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Recipient Name</label>
-                                    <input type="text" wire:model="recipient_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    <input type="text" wire:model="recipient_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2">
                                     @error('recipient_name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                                    <input type="text" wire:model="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    <input type="text" wire:model="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2">
                                     @error('phone') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Province</label>
-                                    <input type="text" wire:model="province" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="e.g. Jawa Barat">
+                                    <input type="text" wire:model="province" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2" placeholder="e.g. Jawa Barat">
                                     @error('province') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">City / Kabupaten</label>
-                                    <input type="text" wire:model="city" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="e.g. Bandung">
+                                    <input type="text" wire:model="city" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2" placeholder="e.g. Bandung">
                                     @error('city') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Full Address Details</label>
-                                    <textarea wire:model="detail" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Street name, building, house number..."></textarea>
+                                    <textarea wire:model="detail" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2" placeholder="Street name, building, house number..."></textarea>
                                     @error('detail') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Postal Code</label>
-                                    <input type="text" wire:model="postal_code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    <input type="text" wire:model="postal_code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm px-3 py-2">
                                     @error('postal_code') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                                 </div>
                             </div>

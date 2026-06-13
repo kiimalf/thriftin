@@ -18,11 +18,6 @@
         <!-- Trix Editor for Articles -->
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
         <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
-        <style>
-            trix-toolbar [data-trix-button-group="file-tools"] {
-                display: none;
-            }
-        </style>
     </head>
     <body class="font-sans antialiased h-full flex flex-col md:flex-row text-gray-900 bg-gray-50 selection:bg-primary-500 selection:text-white" x-data="{ sidebarOpen: false }">
         
