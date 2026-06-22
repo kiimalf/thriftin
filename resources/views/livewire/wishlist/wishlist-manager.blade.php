@@ -1,13 +1,15 @@
-<div class="py-12 bg-gray-50 min-h-screen">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">My Wishlist</h1>
+            <p class="mt-2 text-sm text-gray-500">Items you've loved and saved for later.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <div class="flex items-center justify-between mb-8">
-                    <div>
-                        <h3 class="text-2xl font-bold leading-6 text-gray-900">My Wishlist</h3>
-                        <p class="mt-2 text-sm text-gray-500">Items you've loved and saved for later.</p>
-                    </div>
-                </div>
 
                 @if($wishlistItems->count() > 0)
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 xl:gap-x-8">

@@ -170,7 +170,7 @@
                         </div>
                         <div class="mt-6 flex items-center justify-between">
                             <div class="flex items-center">
-                                <div class="flex-shrink-0">
+                                {{-- <div class="flex-shrink-0">
                                     @if($article->author->avatar)
                                         <img class="h-10 w-10 rounded-full object-cover border border-gray-200" src="{{ $article->author->avatar }}" alt="{{ $article->author->name }}">
                                     @else
@@ -178,11 +178,11 @@
                                             {{ substr($article->author->name, 0, 1) }}
                                         </div>
                                     @endif
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-900">
+                                </div> --}}
+                                <div>
+                                    {{-- <p class="text-sm font-medium text-gray-900">
                                         {{ $article->author->name }}
-                                    </p>
+                                    </p> --}}
                                     <div class="flex space-x-1 text-sm text-gray-500">
                                         <time datetime="{{ $article->published_at->format('Y-m-d') }}">
                                             {{ $article->published_at->format('M d, Y') }}
@@ -190,9 +190,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.show', $article->slug) }}" class="inline-flex items-center px-3 py-1.5 border border-primary-600 text-sm font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 transition-colors">
+                            {{-- <a href="{{ route('blog.show', $article->slug) }}" class="inline-flex items-center px-3 py-1.5 border border-primary-600 text-sm font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 transition-colors">
                                 Read Article
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </article>

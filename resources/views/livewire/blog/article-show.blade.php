@@ -14,15 +14,15 @@
             @endif
 
             <div class="flex items-center justify-center">
-                @if($article->author->avatar)
+                {{-- @if($article->author->avatar)
                     <img class="h-12 w-12 rounded-full object-cover mr-4" src="{{ $article->author->avatar }}" alt="{{ $article->author->name }}">
                 @else
                     <div class="h-12 w-12 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-lg mr-4">
                         {{ substr($article->author->name, 0, 1) }}
                     </div>
-                @endif
+                @endif --}}
                 <div class="text-left">
-                    <p class="text-base font-medium text-gray-900">{{ $article->author->name }}</p>
+                    {{-- <p class="text-base font-medium text-gray-900">{{ $article->author->name }}</p> --}}
                     <div class="flex items-center text-sm text-gray-500">
                         <time datetime="{{ $article->published_at->format('Y-m-d') }}">{{ $article->published_at->format('F d, Y') }}</time>
                         <span class="mx-2">&middot;</span>

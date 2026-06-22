@@ -1,5 +1,13 @@
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">Incoming Orders</h1>
+            <p class="mt-2 text-sm text-gray-500">Manage orders placed by buyers for your items.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         
         @if (session()->has('message'))
             <div class="mb-4 bg-green-50 border-l-4 border-green-400 p-4">
@@ -37,11 +45,6 @@
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <div class="mb-8">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Incoming Orders</h3>
-                    <p class="mt-1 text-sm text-gray-500">Manage orders placed by buyers for your items.</p>
-                </div>
-
                 <!-- Tabs -->
                 <div class="border-b border-gray-200 mb-6">
                     <nav class="-mb-px flex space-x-8" aria-label="Tabs">

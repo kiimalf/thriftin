@@ -1,7 +1,14 @@
-<div class="bg-gray-50 py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="bg-gray-50">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">My Orders</h1>
+            <p class="mt-2 text-sm text-gray-500">View and track your purchases.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-8">My Orders</h1>
             
             @if (session()->has('message'))
                 <div class="mb-4 bg-green-50 border-l-4 border-green-400 p-4 rounded-md">

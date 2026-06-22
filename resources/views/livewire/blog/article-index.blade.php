@@ -1,10 +1,13 @@
-<div>
-    <div class="bg-white py-12 sm:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">ThriftIn Blog</h1>
-                <p class="mt-4 text-xl text-gray-500">Discover styling tips, sustainability practices, and the latest trends in the preloved fashion world.</p>
-            </div>
+<div class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">ThriftIn Blog</h1>
+            <p class="mt-2 text-sm text-gray-500">Discover styling tips, sustainability practices, and the latest trends.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
             @if($featured)
             <!-- Featured Article -->
@@ -30,15 +33,15 @@
                                 <p class="text-lg text-gray-200 mb-6 max-w-3xl line-clamp-2">{{ $featured->excerpt ?? Str::limit(strip_tags($featured->content), 150) }}</p>
                             </a>
                             <div class="flex items-center">
-                                @if($featured->author->avatar)
+                                {{-- @if($featured->author->avatar)
                                     <img class="h-10 w-10 rounded-full object-cover mr-3 border-2 border-white" src="{{ $featured->author->avatar }}" alt="{{ $featured->author->name }}">
                                 @else
                                     <div class="h-10 w-10 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm mr-3 border-2 border-white">
                                         {{ substr($featured->author->name, 0, 1) }}
                                     </div>
-                                @endif
+                                @endif --}}
                                 <div>
-                                    <p class="text-sm font-medium text-white">{{ $featured->author->name }}</p>
+                                    {{-- <p class="text-sm font-medium text-white">{{ $featured->author->name }}</p> --}}
                                     <p class="text-sm text-gray-300">
                                         {{ $featured->published_at->format('M d, Y') }}
                                     </p>
@@ -71,7 +74,7 @@
                             </a>
                         </div>
                         <div class="mt-6 flex items-center">
-                            <div class="flex-shrink-0">
+                            {{-- <div class="flex-shrink-0">
                                 @if($article->author->avatar)
                                     <img class="h-10 w-10 rounded-full object-cover" src="{{ $article->author->avatar }}" alt="{{ $article->author->name }}">
                                 @else
@@ -79,11 +82,11 @@
                                         {{ substr($article->author->name, 0, 1) }}
                                     </div>
                                 @endif
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">
+                            </div> --}}
+                            <div>
+                                {{-- <p class="text-sm font-medium text-gray-900">
                                     {{ $article->author->name }}
-                                </p>
+                                </p> --}}
                                 <div class="flex space-x-1 text-sm text-gray-500">
                                     <time datetime="{{ $article->published_at->format('Y-m-d') }}">
                                         {{ $article->published_at->format('M d, Y') }}
@@ -107,4 +110,3 @@
             </div>
         </div>
     </div>
-</div>

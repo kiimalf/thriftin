@@ -6,6 +6,7 @@ use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 
 class ListingManager extends Component
 {
@@ -47,7 +48,7 @@ class ListingManager extends Component
 
     public function shipOrder($orderId)
     {
-        $order = \App\Models\Order::where('seller_id', Auth::id())->findOrFail($orderId);
+        $order = Order::where('seller_id', Auth::id())->findOrFail($orderId);
         
         $trackingNumber = $this->trackingNumbers[$orderId] ?? null;
         
@@ -89,14 +90,15 @@ class ListingManager extends Component
     {
         $products = collect();
         $orders = collect();
-        $isOrderTab = in_array($this->statusFilter, ['processing', 'shipped']);
+        $isOrderTab = in_array($this->statusFilter, ['processing', 'shipped', 'sold', 'completed']);
 
         if ($isOrderTab) {
             $query = \App\Models\Order::where('seller_id', Auth::id())
                 ->with(['product', 'buyer', 'shippingAddress'])
                 ->orderBy('created_at', 'desc');
                 
-            $query->where('status', $this->statusFilter);
+            $orderStatus = $this->statusFilter === 'sold' ? 'completed' : $this->statusFilter;
+            $query->where('status', $orderStatus);
             
             $orders = $query->paginate(10);
         } else {
@@ -118,6 +120,8 @@ class ListingManager extends Component
             'orders' => $orders,
             'isOrderTab' => $isOrderTab,
             'activeCount' => Product::where('user_id', Auth::id())->where('status', 'active')->count(),
+            'processCount' => Order::where('seller_id', Auth::id())->where('status', 'processing')->count(),
+            'shippingCount' => Order::where('seller_id', Auth::id())->where('status', 'shipped')->count(),
             'soldCount' => Product::where('user_id', Auth::id())->where('status', 'sold')->count(),
         ])->layout('layouts.app');
     }

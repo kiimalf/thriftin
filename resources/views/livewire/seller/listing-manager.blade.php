@@ -1,5 +1,13 @@
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">My Listings</h1>
+            <p class="mt-2 text-sm text-gray-500">Manage your preloved items for sale.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         @if (session()->has('message'))
             <div class="mb-4 bg-green-50 border-l-4 border-green-400 p-4">
                 <div class="flex">
@@ -19,11 +27,7 @@
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <div class="flex items-center justify-between mb-8">
-                    <div>
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">My Listings</h3>
-                        <p class="mt-1 text-sm text-gray-500">Manage your preloved items for sale.</p>
-                    </div>
+                <div class="flex items-center justify-end mb-8">
                     <div>
                         <a href="{{ route('seller.products.create') }}" class="inline-flex items-center rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
                             + Add New Listing
@@ -32,10 +36,18 @@
                 </div>
                 
                 <!-- Stats -->
-                <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
-                    <div class="overflow-hidden rounded-lg bg-gray-50 px-4 py-5 shadow-sm sm:p-6 border border-gray-100">
+                <dl class="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-5 mb-8">
+                    <div class="overflow-hidden rounded-lg bg-gray-50 px-3 py-4 shadow-sm sm:p-3 border border-gray-100">
                         <dt class="truncate text-sm font-medium text-gray-500">Active Listings</dt>
                         <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ $activeCount }}</dd>
+                    </div>
+                    <div class="overflow-hidden rounded-lg bg-gray-50 px-4 py-5 shadow-sm sm:p-6 border border-gray-100">
+                        <dt class="truncate text-sm font-medium text-gray-500">To Process</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ $processCount }}</dd>
+                    </div>
+                    <div class="overflow-hidden rounded-lg bg-gray-50 px-4 py-5 shadow-sm sm:p-6 border border-gray-100">
+                        <dt class="truncate text-sm font-medium text-gray-500">Shipped Items</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ $shippingCount }}</dd>
                     </div>
                     <div class="overflow-hidden rounded-lg bg-gray-50 px-4 py-5 shadow-sm sm:p-6 border border-gray-100">
                         <dt class="truncate text-sm font-medium text-gray-500">Total Sold</dt>
@@ -50,14 +62,14 @@
                 <!-- Tabs -->
                 <div class="border-b border-gray-200 mb-6">
                     <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                        <button wire:click="setStatusFilter('active')" class="{{ $statusFilter === 'active' ? 'border-primary-500 text-primary-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            Active
+                        </button>
                         <button wire:click="setStatusFilter('processing')" class="{{ $statusFilter === 'processing' ? 'border-primary-500 text-primary-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                             Incoming Orders
                         </button>
                         <button wire:click="setStatusFilter('shipped')" class="{{ $statusFilter === 'shipped' ? 'border-primary-500 text-primary-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                             Shipped
-                        </button>
-                        <button wire:click="setStatusFilter('active')" class="{{ $statusFilter === 'active' ? 'border-primary-500 text-primary-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                            Active
                         </button>
                         <button wire:click="setStatusFilter('sold')" class="{{ $statusFilter === 'sold' ? 'border-primary-500 text-primary-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                             Sold

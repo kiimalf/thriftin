@@ -1,10 +1,14 @@
-<div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
-    <div class="mb-8 px-4 sm:px-0">
-        <h3 class="text-2xl font-bold leading-6 text-gray-900">Create New Listing</h3>
-        <p class="mt-2 text-sm text-gray-600">
-            Add photos and details about your item to help buyers find it.
-        </p>
+<div class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">Create New Listing</h1>
+            <p class="mt-2 text-sm text-gray-500">Add photos and details about your item to help buyers find it.</p>
+        </div>
     </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
     <div>
             @if($previewMode)
                 <div class="bg-white shadow sm:rounded-lg overflow-hidden mb-6">
@@ -230,4 +234,7 @@
             @endif
         </div>
     </div>
+</div>
+
+</div>
 </div>

@@ -1,5 +1,13 @@
 <div class="bg-gray-50">
-    <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">Checkout</h1>
+            <p class="mt-2 text-sm text-gray-500">Complete your order securely.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <h2 class="sr-only">Checkout</h2>
 
         <div class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">

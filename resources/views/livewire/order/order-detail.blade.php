@@ -1,5 +1,15 @@
-<div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-    <div class="mb-6">
+<div class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">Order Details</h1>
+            <p class="mt-2 text-sm text-gray-500">View information about order #{{ $order->midtrans_order_id ?? $order->id }}</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-6">
         @if(Auth::id() === $order->seller_id)
             <a href="{{ route('seller.dashboard', ['status' => 'processing']) }}" class="text-sm font-medium text-primary-600 hover:text-primary-500">
                 &larr; Back to My Listings
@@ -173,4 +183,8 @@
             </dl>
         </div>
     </div>
+</div>
+
+</div>
+
 </div>
