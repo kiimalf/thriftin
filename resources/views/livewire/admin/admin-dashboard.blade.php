@@ -3,50 +3,54 @@
 
     <!-- Stat Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-100 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-500">Total Users</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-1">{{ number_format($totalUsers) }}</p>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total Users</p>
+                    <p class="text-3xl font-extrabold text-gray-900 mt-2">{{ number_format($totalUsers) }}</p>
                 </div>
-                <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <div class="p-4 bg-blue-50 text-blue-600 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-100 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-500">Active Products</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-1">{{ number_format($activeProducts) }}</p>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Active Products</p>
+                    <p class="text-3xl font-extrabold text-gray-900 mt-2">{{ number_format($activeProducts) }}</p>
                 </div>
-                <div class="p-3 bg-green-50 text-green-600 rounded-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                <div class="p-4 bg-green-50 text-green-600 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-100 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-500">Successful Orders</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-1">{{ number_format($successfulOrders) }}</p>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Successful Orders</p>
+                    <p class="text-3xl font-extrabold text-gray-900 mt-2">{{ number_format($successfulOrders) }}</p>
                 </div>
-                <div class="p-3 bg-amber-50 text-amber-600 rounded-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <div class="p-4 bg-amber-50 text-amber-600 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-100 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-500">Total GMV</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-1">Rp {{ number_format($gmv, 0, ',', '.') }}</p>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total GMV</p>
+                    <p class="text-3xl font-extrabold text-gray-900 mt-2">Rp {{ number_format($gmv, 0, ',', '.') }}</p>
                 </div>
-                <div class="p-3 bg-purple-50 text-purple-600 rounded-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="p-4 bg-purple-50 text-purple-600 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
             </div>
         </div>

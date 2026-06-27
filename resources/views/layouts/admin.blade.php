@@ -25,11 +25,12 @@
         <div x-show="sidebarOpen" class="fixed inset-0 z-40 bg-gray-600 bg-opacity-75 md:hidden" @click="sidebarOpen = false" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"></div>
 
         <!-- Sidebar -->
-        <div :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:w-64 flex-shrink-0 flex flex-col">
+        <div :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}" class="fixed inset-y-0 left-0 z-50 w-72 bg-slate-900 text-white transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:w-72 flex-shrink-0 flex flex-col shadow-xl">
             <!-- Sidebar Header -->
-            <div class="flex items-center justify-between h-16 px-4 bg-slate-950">
-                <a href="{{ route('admin.dashboard') }}" class="text-xl font-black tracking-tighter uppercase text-white">
-                    ThriftIn <span class="text-primary-400">Admin</span>
+            <div class="flex items-center justify-between h-20 px-6 bg-slate-950 border-b border-slate-800/50">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-1">
+                    <span class="text-2xl font-extrabold tracking-tight text-white">Thrift<span class="text-primary-500">In</span></span>
+                    <span class="text-[10px] font-bold bg-primary-600 text-white px-1.5 py-0.5 rounded uppercase tracking-widest ml-1">Admin</span>
                 </a>
                 <button @click="sidebarOpen = false" class="md:hidden text-gray-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -37,27 +38,27 @@
             </div>
 
             <!-- Sidebar Navigation -->
-            <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
-                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                    <svg class="mr-3 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.dashboard') ? 'text-primary-400' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <nav class="flex-1 px-4 py-6 space-y-2.5 overflow-y-auto">
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-primary-600 text-white shadow-md shadow-primary-900/20' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+                    <svg class="mr-4 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.dashboard') ? 'text-white' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     Dashboard
                 </a>
-                <a href="{{ route('admin.users.index') ?? '#' }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                    <svg class="mr-3 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.users.*') ? 'text-primary-400' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <a href="{{ route('admin.users.index') ?? '#' }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-primary-600 text-white shadow-md shadow-primary-900/20' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+                    <svg class="mr-4 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.users.*') ? 'text-white' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     User Management
                 </a>
-                <a href="{{ route('admin.products.index') ?? '#' }}" class="{{ request()->routeIs('admin.products.*') ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                    <svg class="mr-3 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.products.*') ? 'text-primary-400' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                <a href="{{ route('admin.products.index') ?? '#' }}" class="{{ request()->routeIs('admin.products.*') ? 'bg-primary-600 text-white shadow-md shadow-primary-900/20' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+                    <svg class="mr-4 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.products.*') ? 'text-white' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
                     Product Moderation
                 </a>
-                <a href="{{ route('admin.articles.index') ?? '#' }}" class="{{ request()->routeIs('admin.articles.*') ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                    <svg class="mr-3 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.articles.*') ? 'text-primary-400' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                <a href="{{ route('admin.articles.index') ?? '#' }}" class="{{ request()->routeIs('admin.articles.*') ? 'bg-primary-600 text-white shadow-md shadow-primary-900/20' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+                    <svg class="mr-4 flex-shrink-0 h-5 w-5 {{ request()->routeIs('admin.articles.*') ? 'text-white' : 'text-slate-400 group-hover:text-primary-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
                     Articles & Blog
                 </a>
             </nav>
             
-            <div class="p-4 bg-slate-950">
-                <a href="{{ route('home') }}" class="flex items-center text-sm font-medium text-slate-300 hover:text-white">
+            <div class="p-6 bg-slate-950 border-t border-slate-800/50">
+                <a href="{{ route('home') }}" class="flex items-center justify-center text-sm font-medium text-slate-300 hover:text-white transition-colors">
                     <svg class="mr-2 h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Back to Main Site
                 </a>
