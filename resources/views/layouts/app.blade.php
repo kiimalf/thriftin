@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,19 +15,19 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body class="font-sans antialiased h-full flex flex-col text-gray-900 bg-white">
+    <body class="font-sans antialiased min-h-screen flex flex-col text-gray-900 bg-white">
         
         <!-- Navigation -->
         @include('layouts.navigation')
 
-        <!-- Page Heading -->
-        @isset($header)
-            <header class="bg-white border-b border-gray-100">
-                <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endisset
+        <!-- Mobile Search Bar (Outside Navbar) - Only on relevant pages -->
+        @if(request()->routeIs('home') || request()->routeIs('products.index') || request()->routeIs('blog.index'))
+        <div class="sm:hidden px-4 py-3 bg-white border-b border-gray-100">
+            @livewire('search-bar')
+        </div>
+        @endif
+
+
 
         <!-- Page Content -->
         <main class="flex-grow">
@@ -36,9 +36,10 @@
 
         <!-- Footer -->
         <footer class="bg-white border-t border-gray-100">
-            <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-                    <div class="col-span-1 md:col-span-1">
+            <div class="max-w-7xl mx-auto py-8 md:py-20 px-4 sm:px-6 lg:px-8">
+                <!-- Desktop Footer Content -->
+                <div class="hidden md:grid md:grid-cols-4 gap-10">
+                    <div class="col-span-1">
                         <a href="{{ route('home') }}" class="inline-block">
                             <span class="text-2xl font-extrabold tracking-tight text-gray-900">Thrift<span class="text-primary-600">In</span></span>
                         </a>
@@ -70,8 +71,16 @@
                         </ul>
                     </div>
                 </div>
-                <div class="mt-10 border-t border-gray-100 pt-8 flex items-center justify-between">
-                    <p class="text-sm text-gray-400">
+
+                <!-- Mobile Footer Content -->
+                <div class="md:hidden flex flex-col items-center justify-center space-y-4">
+                    <a href="{{ route('home') }}" class="inline-block">
+                        <span class="text-2xl font-extrabold tracking-tight text-gray-900">Thrift<span class="text-primary-600">In</span></span>
+                    </a>
+                </div>
+
+                <div class="mt-6 md:mt-10 border-t border-gray-100 pt-6 md:pt-8 flex items-center justify-center md:justify-between">
+                    <p class="text-sm text-gray-400 text-center">
                         &copy; {{ date('Y') }} ThriftIn. All rights reserved.
                     </p>
                 </div>
