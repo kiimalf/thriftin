@@ -135,8 +135,9 @@
                         <span wire:loading.remove wire:target="addToCart">Add to Cart</span>
                         <span wire:loading wire:target="addToCart">Adding...</span>
                     </button>
-                    <button type="button" class="flex-1 bg-gray-900 border border-transparent rounded-xl py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all duration-200 shadow-sm hover:shadow-md sm:w-full">
-                        Buy Now
+                    <button type="button" wire:click="buyNow" class="flex-1 bg-gray-900 border border-transparent rounded-xl py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all duration-200 shadow-sm hover:shadow-md sm:w-full" wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="buyNow">Buy Now</span>
+                        <span wire:loading wire:target="buyNow">Processing...</span>
                     </button>
                 </div>
             </div>

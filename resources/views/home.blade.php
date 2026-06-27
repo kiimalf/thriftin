@@ -19,7 +19,7 @@
                                 </a>
                             </div>
                             <div class="mt-3 sm:mt-0 sm:ml-4">
-                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3.5 border-2 border-primary-200 text-base font-semibold rounded-xl text-primary-700 bg-white hover:bg-primary-50 transition-all duration-200 md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('seller.dashboard') }}" class="w-full flex items-center justify-center px-8 py-3.5 border-2 border-primary-200 text-base font-semibold rounded-xl text-primary-700 bg-white hover:bg-primary-50 transition-all duration-200 md:py-4 md:text-lg md:px-10">
                                     Start Selling
                                 </a>
                             </div>

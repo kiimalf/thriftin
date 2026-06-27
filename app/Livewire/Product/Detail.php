@@ -48,6 +48,26 @@ class Detail extends Component
         session()->flash('message', 'Product added to cart!');
     }
 
+    public function buyNow()
+    {
+        if (!\Illuminate\Support\Facades\Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $cartItem = \App\Models\CartItem::firstOrCreate([
+            'user_id' => \Illuminate\Support\Facades\Auth::id(),
+            'product_id' => $this->product->id,
+        ]);
+
+        if (!$cartItem->wasRecentlyCreated) {
+            $cartItem->increment('quantity');
+        }
+
+        $this->dispatch('cart-updated');
+        
+        return redirect()->route('checkout.index');
+    }
+
     public function render()
     {
         return view('livewire.product.detail', [
