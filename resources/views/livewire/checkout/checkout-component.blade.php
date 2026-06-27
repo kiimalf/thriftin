@@ -1,11 +1,7 @@
 <div class="bg-white min-h-screen">
-    <!-- Header -->
-    <div class="max-w-7xl mx-auto pt-10 pb-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold text-gray-900">Checkout</h1>
-        <p class="mt-1 text-sm text-gray-500">Complete your order securely.</p>
-    </div>
 
-    <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-7xl mx-auto pt-8 pb-12 px-4 sm:px-6 lg:px-8">
         <h2 class="sr-only">Checkout</h2>
 
         <div class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">

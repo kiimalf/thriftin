@@ -1,22 +1,9 @@
 <div class="bg-white min-h-screen">
-    <!-- Header -->
-    <div class="max-w-7xl mx-auto pt-10 pb-6 px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-900">My Wishlist</h1>
-                <p class="mt-1 text-sm text-gray-500">Items you've loved and saved for later.</p>
-            </div>
-            @if($wishlistItems->count() > 0)
-                <span class="inline-flex items-center px-3 py-1 rounded-lg bg-gray-50 border border-gray-100 text-sm text-gray-600 font-medium">
-                    {{ $wishlistItems->total() }} {{ Str::plural('item', $wishlistItems->total()) }}
-                </span>
-            @endif
-        </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-7xl mx-auto pt-8 pb-12 px-4 sm:px-6 lg:px-8">
         @if($wishlistItems->count() > 0)
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 xl:gap-6">
                 @foreach($wishlistItems as $item)
                     <div class="relative group">
                         <x-product-card :product="$item->product" />

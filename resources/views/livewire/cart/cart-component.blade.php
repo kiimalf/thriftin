@@ -1,11 +1,7 @@
 <div class="bg-white min-h-screen">
-    <!-- Header -->
-    <div class="max-w-7xl mx-auto pt-10 pb-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold text-gray-900">Shopping Cart</h1>
-        <p class="mt-1 text-sm text-gray-500">Review your selected items before checkout.</p>
-    </div>
 
-    <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-7xl mx-auto pt-8 pb-12 px-4 sm:px-6 lg:px-8">
         <form class="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
             <section aria-labelledby="cart-heading" class="lg:col-span-7 space-y-4">
                 <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>

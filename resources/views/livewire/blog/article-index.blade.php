@@ -1,11 +1,5 @@
 <div class="bg-white min-h-screen">
-    <!-- Header -->
-    <div class="border-b border-gray-100">
-        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-2xl font-bold text-gray-900">ThriftIn Blog</h1>
-            <p class="mt-1 text-sm text-gray-500">Discover styling tips, sustainability practices, and the latest trends.</p>
-        </div>
-    </div>
+
 
     <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
 
