@@ -33,18 +33,18 @@
             <div class="grid grid-cols-2 gap-4 p-8 transform rotate-3 scale-105">
                 <div class="space-y-4">
                     <div class="h-64 w-48 bg-gray-100 rounded-2xl shadow-lg relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                        <img src="{{ asset('images/hero/fashion-1.png') }}" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
                     </div>
                     <div class="h-48 w-48 bg-gray-100 rounded-2xl shadow-lg relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                        <img src="{{ asset('images/hero/fashion-2.png') }}" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
                     </div>
                 </div>
                 <div class="space-y-4 mt-8">
                     <div class="h-48 w-48 bg-gray-100 rounded-2xl shadow-lg relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1571513722275-4b41e4050459?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                        <img src="{{ asset('images/hero/fashion-3.png') }}" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
                     </div>
                     <div class="h-64 w-48 bg-gray-100 rounded-2xl shadow-lg relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1550614000-4b95d4669f6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                        <img src="{{ asset('images/hero/fashion-4.png') }}" alt="Fashion" class="absolute inset-0 w-full h-full object-cover img-zoom">
                     </div>
                 </div>
             </div>

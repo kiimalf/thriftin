@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'size' => '32',
                 'brand' => 'Levi\'s',
                 'weight' => 600,
-                'image_url' => 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-1.png',
             ],
             [
                 'title' => 'Nike 90s Spellout Sweatshirt',
@@ -46,7 +46,7 @@ class ProductSeeder extends Seeder
                 'size' => 'L',
                 'brand' => 'Nike',
                 'weight' => 500,
-                'image_url' => 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-2.png',
             ],
             [
                 'title' => 'Floral Summer Midi Dress',
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
                 'size' => 'S',
                 'brand' => 'Zara',
                 'weight' => 300,
-                'image_url' => 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-3.png',
             ],
             [
                 'title' => 'Dr. Martens 1460 8-Eye Boots',
@@ -70,7 +70,7 @@ class ProductSeeder extends Seeder
                 'size' => '42',
                 'brand' => 'Dr. Martens',
                 'weight' => 1200,
-                'image_url' => 'https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-4.png',
             ],
             [
                 'title' => 'North Face Nuptse 700 Puffer',
@@ -82,7 +82,7 @@ class ProductSeeder extends Seeder
                 'size' => 'M',
                 'brand' => 'The North Face',
                 'weight' => 800,
-                'image_url' => 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-5.png',
             ],
             [
                 'title' => 'Canvas Tote Bag Aesthetic',
@@ -94,7 +94,7 @@ class ProductSeeder extends Seeder
                 'size' => 'OS',
                 'brand' => null,
                 'weight' => 200,
-                'image_url' => 'https://images.unsplash.com/photo-1597633244018-b2a1a89c424a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-6.png',
             ],
             [
                 'title' => 'Adidas Ultraboost 21',
@@ -106,7 +106,7 @@ class ProductSeeder extends Seeder
                 'size' => '43',
                 'brand' => 'Adidas',
                 'weight' => 600,
-                'image_url' => 'https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-7.png',
             ],
             [
                 'title' => 'Corduroy Overshirt Brown',
@@ -118,7 +118,7 @@ class ProductSeeder extends Seeder
                 'size' => 'XL',
                 'brand' => 'Uniqlo',
                 'weight' => 450,
-                'image_url' => 'https://images.unsplash.com/photo-1596755094514-f87e32f6b717?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-8.png',
             ],
             [
                 'title' => 'Y2K Pleated Mini Skirt',
@@ -130,7 +130,7 @@ class ProductSeeder extends Seeder
                 'size' => 'M',
                 'brand' => null,
                 'weight' => 250,
-                'image_url' => 'https://images.unsplash.com/photo-1582142306909-195724d33ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-9.png',
             ],
             [
                 'title' => 'Vintage Leather Biker Jacket',
@@ -142,7 +142,7 @@ class ProductSeeder extends Seeder
                 'size' => 'L',
                 'brand' => 'Harley Davidson',
                 'weight' => 2000,
-                'image_url' => 'https://images.unsplash.com/photo-1520975954732-57dd22299614?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'image_url' => '/images/products/product-10.png',
             ],
         ];
 
